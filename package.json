@@ -1,0 +1,19 @@
+{
+  "name": "webpack-module",
+  "version": "1.0.0",
+  "description": "-   命令行支持参数",
+  "main": "index.js",
+  "scripts": {
+    "create-entry": "node ./webpack/entry.creator.js",
+    "create-comp": "node ./webpack/comp.creator.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "minimist": "^1.2.5",
+    "naming-style": "^1.0.1"
+  }
+}
