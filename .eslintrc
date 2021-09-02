@@ -1,0 +1,22 @@
+{
+    "extends": ["alloy", "alloy/react"],
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+        // "mocha": true,
+        // "jest": true,F
+        // "jquery": true
+    },
+    "globals": {},
+    "rules": {
+        "no-invalid-this": "off",
+        "react/no-unsafe": "off",
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect",
+        }
+    }
+}

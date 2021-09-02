@@ -2,6 +2,9 @@
   "name": "webpack-module",
   "version": "0.0.1",
   "description": "-   命令行支持参数",
+  "browserslist": [
+    "> 1%"
+  ],
   "scripts": {
     "create-entry": "node ./webpack/entry.creator.js",
     "create-comp": "node ./webpack/comp.creator.js"
@@ -45,8 +48,11 @@
     "mini-css-extract-plugin": "^2.2.2",
     "minimist": "^1.2.5",
     "naming-style": "^1.0.1",
+    "postcss": "^8.3.6",
     "postcss-loader": "^6.1.1",
+    "postcss-px-to-viewport": "^1.1.1",
     "postcss-pxtorem": "^6.0.0",
+    "prettier": "^2.3.2",
     "sass": "^1.39.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
