@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const colors = require('colors');
 const { PAGE_PATH, ENTRY_CONFIG_FILE } = require('./creator.config');
-const { INCLUDE_ENTRY_LIST, EXCLUDE_ENTRY_LIST } = require('../entry.config');
+const { INCLUDE_ENTRY_LIST, EXCLUDE_ENTRY_LIST } = require('../.entry');
 
 let entryDirList = fs.readdirSync(PAGE_PATH);
 const entryConfigList = [];

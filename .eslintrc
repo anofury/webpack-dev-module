@@ -1,5 +1,5 @@
 {
-    "extends": ["alloy", "alloy/react"],
+    "extends": ["alloy", "alloy/react", "plugin:prettier/recommended"],
     "env": {
         "browser": true,
         "node": true,
@@ -11,12 +11,12 @@
     "globals": {},
     "rules": {
         "no-invalid-this": "off",
-        "react/no-unsafe": "off",
+        "react/no-unsafe": "off"
     },
     "settings": {
         "react": {
             "pragma": "React",
-            "version": "detect",
+            "version": "detect"
         }
     }
 }
