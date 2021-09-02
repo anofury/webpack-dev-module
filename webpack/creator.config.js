@@ -20,5 +20,5 @@ module.exports = {
     // 文件后缀
     ENTRY_EXT: '.js',
     // 设置入口文件前缀
-    PREFIX: true,
+    PREFIX: false,
 };
