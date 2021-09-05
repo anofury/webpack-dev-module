@@ -1,6 +1,5 @@
 /**
  * 读取 src/pages 下的目录，导出 entry 配置
- * 对于 htmlname 相同的 entry，合并成一个 chunks 并仅使用第一个入口配置
  */
 const fs = require('fs');
 const path = require('path');
@@ -29,22 +28,31 @@ for (let entryDirItem of entryDirList) {
         fs.statSync(entryConfigFileName);
 
         const entryConfig = require(entryConfigFileName);
-        const entryFileName = `${PAGE_PATH}/${entryDirItem}/${entryConfig.entry}`;
+        const entryFormat = [entryConfig['entry']].reduce((acc, val) => acc.concat(val), []);
+        const entryConcat = [];
 
-        // 是否存在入口文件
-        fs.statSync(entryFileName);
+        for (let entryItem of entryFormat) {
+            const entryFileName = `${PAGE_PATH}/${entryDirItem}/${entryItem}`;
 
-        entryConfigList.push(
-            Object.assign({}, entryConfig, {
-                entry: [entryConfig.entry.split('.')[0]],
-                entrypath: [path.resolve(__dirname, entryFileName)],
-            })
-        );
+            // 是否存在入口文件
+            fs.statSync(entryFileName);
+
+            entryConcat.push({
+                [entryItem.split('.')[0]]: path.resolve(__dirname, entryFileName),
+            });
+        }
+
+        const newEntryConfig = {
+            ...entryConfig,
+            entry: entryConcat,
+        };
+
+        entryConfigList.push(newEntryConfig);
     } catch (err) {
         console.log(colors.yellow(`未识别目录: ${entryDirItem}`));
     }
 }
 
-console.log(entryConfigList);
+console.log(JSON.stringify(entryConfigList));
 
 module.exports = entryConfigList;

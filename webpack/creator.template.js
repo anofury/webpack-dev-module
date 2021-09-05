@@ -9,7 +9,7 @@ const prefix = (title, author, date) => `/*
 const entry = (entry, title, filename, template) => `// webpack 使用
 // 存在 _entry_.js 且 entry 配置正确的文件夹为入口文件夹
 module.exports = {
-    // 入口文件名
+    // 入口文件名，string | string[]
     entry: '${entry}',
     // html标题
     title: '${title}',

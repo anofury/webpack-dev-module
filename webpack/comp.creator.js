@@ -7,7 +7,7 @@ const path = require('path');
 const minimist = require('minimist');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
-const { prefix } = require('./create.template');
+const { prefix } = require('./creator.template');
 const { COMP_PATH, CSS_EXT, ENTRY_EXT, AUTHOR, PREFIX } = require('./creator.config');
 
 const argvs = process.argv;
@@ -43,13 +43,13 @@ try {
 } catch (err) {
     // 1. 创建组件目录
     fs.mkdir(compDirName, { recursive: true }, (err) => {
-        if (err?.code === 'EEXIST') {
+        if (err && err.code === 'EEXIST') {
             console.log(colors.red(`文件夹已存在: \n${compDirName}\n`));
         } else if (err) {
             console.log(colors.red(`文件夹创建失败: \n${err}\n`));
         } else {
             // 2. 创建组件文件
-            fs.writeFile(compFileName, compPrefix + `import './${compConfig.name}${CSS_EXT}';\n\n`, {}, (err) => {
+            fs.writeFile(compFileName, compPrefix + `\n\nimport './${compConfig.name}${CSS_EXT}';\n\n`, {}, (err) => {
                 if (err) {
                     console.log(colors.red(`组件文件创建失败: \n${err}\n`));
                 } else {

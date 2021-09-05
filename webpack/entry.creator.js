@@ -56,7 +56,7 @@ try {
             console.log(colors.red(`文件夹创建失败: \n${err}\n`));
         } else {
             // 2. 创建入口目录文件
-            fs.writeFile(entryFileName, entryPrefix + `import './${entryConfig.entry}${CSS_EXT}';\n\n`, {}, (err) => {
+            fs.writeFile(entryFileName, entryPrefix + `\n\nimport './${entryConfig.entry}${CSS_EXT}';\n\n`, {}, (err) => {
                 if (err) {
                     console.log(colors.red(`入口文件创建失败: \n${err}\n`));
                 } else {
