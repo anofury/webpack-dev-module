@@ -1,7 +1,7 @@
 {
   "name": "webpack-module",
   "version": "0.0.1",
-  "description": "-   命令行支持参数",
+  "description": "命令行支持参数",
   "browserslist": [
     "> 1%"
   ],
