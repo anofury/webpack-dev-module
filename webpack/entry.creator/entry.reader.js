@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const colors = require('colors');
 const { PAGE_PATH, ENTRY_CONFIG_FILE } = require('./creator.config');
-const { INCLUDE_ENTRY_LIST, EXCLUDE_ENTRY_LIST } = require('../.entry');
+const { INCLUDE_ENTRY_LIST, EXCLUDE_ENTRY_LIST } = require('../../.entry');
 
 let entryDirList = fs.readdirSync(PAGE_PATH);
 const entryConfigList = [];
@@ -16,6 +16,12 @@ if (INCLUDE_ENTRY_LIST && INCLUDE_ENTRY_LIST.length) {
 }
 
 for (let entryDirItem of entryDirList) {
+    const entryDirStat = fs.statSync(`${PAGE_PATH}/${entryDirItem}`);
+
+    if (!entryDirStat.isDirectory()) {
+        // 非文件夹
+        continue;
+    }
     if (EXCLUDE_ENTRY_LIST && EXCLUDE_ENTRY_LIST.length && EXCLUDE_ENTRY_LIST.includes(entryDirItem)) {
         // 指定目录不读取
         continue;
