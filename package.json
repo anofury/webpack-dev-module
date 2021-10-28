@@ -6,8 +6,8 @@
     "> 1%"
   ],
   "scripts": {
-    "new-entry": "node ./webpack/entry.creator/entry.creator.js",
-    "new-comp": "node ./webpack/entry.creator/comp.creator.js"
+    "new-page": "node ./webpack/utils/page.js",
+    "new-comp": "node ./webpack/utils/component.js"
   },
   "keywords": [],
   "author": "anofury",

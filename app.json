@@ -1,0 +1,12 @@
+{
+    "entryIncludeList": [],
+    "entryExcludeList": ["demo"],
+    "entryConfigFile": "entry.json",
+    "distPath": "./dist",
+    "pagePath": "./src/pages",
+    "compPath": "./src/components",
+    "staticPath": "./static",
+    "defaultTemplate": "index.html",
+    "styleType": ".less",
+    "entryType": ".js"
+}
