@@ -1,0 +1,12 @@
+[
+	{
+		"entry": [
+			{
+				"demo1": "E:\\h5-projects\\webpack-module\\src\\pages\\demo-1\\demo1.js"
+			}
+		],
+		"title": "demo-1",
+		"filename": "demo_1.html",
+		"template": "index.html"
+	}
+]

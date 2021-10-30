@@ -3,20 +3,21 @@
  * @Options [-n, --name] [-t, --title] [--htmlname] [--template]
  */
 const fs = require('fs');
-const path = require('path');
 const minimist = require('minimist');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
 const tool = require('./tool');
 
 const parentDir = '../../';
-const appConfig = tool.jsonParser(path.resolve(__dirname, parentDir + 'app.json'));
-const entryConfigTemplate = (entry, title, filename, template) => `{
-    "entry": ["${entry}"],
-    "title": "${title}",
-    "filename": "${filename}",
-    "template": "${template}"
-}`;
+const appConfig = require(parentDir + 'app.json');
+const entryConfigTemplate = (entry, title, filename, template) => {
+    return {
+        entry: [entry],
+        title,
+        filename,
+        template,
+    };
+};
 
 const argvs = process.argv;
 const argvsFormated = minimist(argvs.slice(2));
@@ -40,28 +41,32 @@ const entryConfigFormat = {
     template: argvsTemplate,
 };
 
-const entryDirName = path.resolve(__dirname, `${parentDir}${appConfig['pagePath']}/${entryConfigFormat.name}`);
-const entryFileName = path.resolve(__dirname, `${entryDirName}/${entryConfigFormat.entry}${appConfig['entryType']}`);
-const entryCssFileName = path.resolve(__dirname, `${entryDirName}/${entryConfigFormat.entry}${appConfig['styleType']}`);
-const entryConfigFileName = path.resolve(__dirname, `${entryDirName}/${appConfig['entryConfigFile']}`);
+const entryDirName = tool.getAbsolutePath(`${parentDir}${appConfig['pagePath']}/${entryConfigFormat.name}`);
+const entryFileName = tool.getAbsolutePath(`${entryDirName}/${entryConfigFormat.entry}${appConfig['entryType']}`);
+const entryCssFileName = tool.getAbsolutePath(`${entryDirName}/${entryConfigFormat.entry}${appConfig['styleType']}`);
+const entryConfigFileName = tool.getAbsolutePath(
+    `${entryDirName}/${tool.getEntryConfigFileName(entryConfigFormat.entry)}`
+);
 
 try {
     fs.statSync(entryDirName);
-    console.log(colors.red(`entryDirName is exist: \n${entryDirName}\n`));
+    console.log(colors.red(`entryDirName is exist: \n${entryDirName}`));
 } catch (err) {
     // 1. create entryDir
     fs.mkdir(entryDirName, { recursive: true }, (err) => {
         if (err) {
-            console.log(colors.red(`entryDir fail: \n${err}\n`));
+            console.log(colors.red(`entryDir fail: \n${err}`));
         } else {
             // 2. create entryFile
             fs.writeFile(
                 entryFileName,
-                `/*\n * \n * ${tool.getDataTime()}\n */\nimport './${entryConfigFormat.entry}${appConfig['styleType']}';\n\n`,
+                `/*\n * \n * ${tool.getDataTime()}\n */\nimport './${entryConfigFormat.entry}${
+                    appConfig['styleType']
+                }';\n`,
                 {},
                 (err) => {
                     if (err) {
-                        console.log(colors.red(`entryFile fail: \n${err}\n`));
+                        console.log(colors.red(`entryFile fail: \n${err}`));
                     } else {
                         // 3. create entryConfigFile
                         entryConfigFormat.entry = `${entryConfigFormat.entry}${appConfig['entryType']}`;
@@ -72,17 +77,21 @@ try {
                             ? entryConfigFormat.template
                             : `${entryConfigFormat.template}.html`;
 
-                        const entryConfigData = entryConfigTemplate(
-                            entryConfigFormat.entry,
-                            entryConfigFormat.title,
-                            entryConfigFormat.htmlName,
-                            entryConfigFormat.template
+                        const entryConfigData = JSON.stringify(
+                            entryConfigTemplate(
+                                entryConfigFormat.entry,
+                                entryConfigFormat.title,
+                                entryConfigFormat.htmlName,
+                                entryConfigFormat.template
+                            ),
+                            null,
+                            '\t'
                         );
                         fs.writeFile(entryConfigFileName, entryConfigData, {}, (err) => {
                             if (err) {
-                                console.log(colors.red(`entryConfigFile fail: \n${err}\n`));
+                                console.log(colors.red(`entryConfigFile fail: \n${err}`));
                             } else {
-                                console.log(colors.green(`success.\n`));
+                                console.log(colors.green(`success.`));
                             }
                         });
                     }

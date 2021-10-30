@@ -1,7 +1,6 @@
 {
     "entryIncludeList": [],
     "entryExcludeList": ["demo"],
-    "entryConfigFile": "entry.json",
     "distPath": "./dist",
     "pagePath": "./src/pages",
     "compPath": "./src/components",

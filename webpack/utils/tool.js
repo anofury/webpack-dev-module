@@ -1,15 +1,9 @@
 const fs = require('fs');
+const path = require('path');
+const nameStyleFormat = require('naming-style');
 
-const jsonParser = (filename) => {
-    let parsetRet = {};
-
-    try {
-        const readFileRet = fs.readFileSync(filename, { encoding: 'utf8' });
-
-        parsetRet = JSON.parse(readFileRet);
-    } catch (err) {}
-
-    return parsetRet;
+const getAbsolutePath = (dir) => {
+    return path.resolve(__dirname, dir);
 };
 
 const getDataTime = () => {
@@ -24,7 +18,17 @@ const getDataTime = () => {
     return nowRet;
 };
 
+const getEntryConfigFileName = (dirname) => {
+    return nameStyleFormat.camel(dirname) + '.json';
+};
+
+const entryCacheGenerator = (content) => {
+    fs.writeFile(getAbsolutePath('../.entry'), content, {}, (err) => {});
+};
+
 module.exports = {
-    jsonParser,
+    getAbsolutePath,
     getDataTime,
+    getEntryConfigFileName,
+    entryCacheGenerator,
 };

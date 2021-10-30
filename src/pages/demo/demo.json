@@ -1,0 +1,8 @@
+{
+	"entry": [
+		"demo.js"
+	],
+	"title": "demo",
+	"filename": "demo.html",
+	"template": "index.html"
+}

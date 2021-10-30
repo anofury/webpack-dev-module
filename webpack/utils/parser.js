@@ -7,10 +7,17 @@ const colors = require('colors');
 const tool = require('./tool');
 
 const parentDir = '../../';
-const appConfig = tool.jsonParser(path.resolve(__dirname, parentDir + 'app.json'));
+let appConfig;
 
-let entryDirList = fs.readdirSync(parentDir + appConfig['pagePath']);
-const entryConfigList = [];
+try {
+    appConfig = require(parentDir + 'app.json');
+} catch (err) {
+    console.log(colors.red(`The configuration file must be in JSON format: app.json`));
+    return;
+}
+
+let entryDirList = fs.readdirSync(tool.getAbsolutePath(parentDir + appConfig['pagePath']));
+let entryConfigList = [];
 
 if (appConfig['entryIncludeList'] && appConfig['entryIncludeList'].length) {
     // using config if exit
@@ -18,7 +25,14 @@ if (appConfig['entryIncludeList'] && appConfig['entryIncludeList'].length) {
 }
 
 for (let entryDirItem of entryDirList) {
-    const entryDirStat = fs.statSync(`${parentDir}${appConfig['pagePath']}/${entryDirItem}`);
+    let entryDirStat;
+
+    try {
+        entryDirStat = fs.statSync(tool.getAbsolutePath(`${parentDir}${appConfig['pagePath']}/${entryDirItem}`));
+    } catch (err) {
+        console.log(colors.yellow(`no such file or directory : ${entryDirItem}`));
+        continue;
+    }
 
     if (!entryDirStat.isDirectory()) {
         // non folder
@@ -33,13 +47,15 @@ for (let entryDirItem of entryDirList) {
         continue;
     }
 
-    const entryConfigFileName = `${parentDir}${appConfig['pagePath']}/${entryDirItem}/${appConfig['entryConfigFile']}`;
+    const entryConfigFileName = `${parentDir}${appConfig['pagePath']}/${entryDirItem}/${tool.getEntryConfigFileName(
+        entryDirItem
+    )}`;
 
     try {
         // if exit entry-config
-        fs.statSync(entryConfigFileName);
+        fs.statSync(tool.getAbsolutePath(entryConfigFileName));
 
-        const entryConfig = tool.jsonParser(entryConfigFileName);
+        const entryConfig = require(entryConfigFileName);
         const entryFormat = [entryConfig['entry']].reduce((acc, val) => acc.concat(val), []);
         const entryConcat = [];
 
@@ -47,7 +63,7 @@ for (let entryDirItem of entryDirList) {
             const entryFileName = `${parentDir}${appConfig['pagePath']}/${entryDirItem}/${entryItem}`;
 
             // if exit entry
-            fs.statSync(entryFileName);
+            fs.statSync(tool.getAbsolutePath(entryFileName));
 
             entryConcat.push({
                 [entryItem.split('.')[0]]: path.resolve(__dirname, entryFileName),
@@ -61,8 +77,11 @@ for (let entryDirItem of entryDirList) {
 
         entryConfigList.push(newEntryConfig);
     } catch (err) {
-        console.log(colors.yellow(`未识别目录: ${entryDirItem}`));
+        console.log(colors.yellow(`ignore: ${entryDirItem}`));
     }
 }
+
+// save entry parser result
+tool.entryCacheGenerator(JSON.stringify(entryConfigList, null, '\t'));
 
 module.exports = entryConfigList;
