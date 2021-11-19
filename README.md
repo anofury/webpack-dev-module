@@ -1,38 +1,8 @@
-# 脚手架设计
-
-## 执行 entry.creator.js 按设定模板创建入口文件
-
-*   命令行支持参数
-
-```bash
-npm run new-entry -- --name "about-me" --title "关于我" --htmlname "about_me" --template "template" --author "anofury"
-npm run new-entry -- -n "about-me" -t "关于我"
-# 推荐
-npm run new-entry "about-me" "关于我"
-```
-
-*   name 自动转化
-*   entry 兼容 `.jsx`
-
-| name     | folder   | entry      | htmlname（缺省值）  |
-| -------- | -------- | ---------- | ------------------ |
-| about    | about    | about.js   | about.html         |
-| about-me | about-me | aboutMe.js | about_me.html      |
-| aboutMe  | about-me | aboutMe.js | about_me.html      |
-
-*   filename 使用小写字母、下划线、数字组成，禁止数字开头
-
-*   入口文件模板
-
-```javascript
-// ${USER}缺省值：require("os").hostname()
-
-/*
- * Created by ${USER} on ${DATE}
- * title: 关于我
- * htmlname: about_me
- * template: template
- */
-```
-
-## 使用 fs 模块读取目录结构并自动设置 HtmlWebpackPlugin 的 title、template、chunks、filename 参数
+- 新建页面：`npm run page [page-dir]:[page-name]`
+   - 创建页面目录：`[page-dir]`
+   - 创建页面入口文件：`[pageName].jsx`
+   - 创建页面打包配置：`[pageName].json`
+- 新建组件：`npm run component component-name`
+   - 创建组件目录：`[ComponentName]`
+   - 创建组件文件：`[ComponentName].jsx`
+   - 创建组件样式文件：`[ComponentName].less`

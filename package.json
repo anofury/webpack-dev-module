@@ -1,13 +1,13 @@
 {
   "name": "webpack-module",
   "version": "0.0.1",
-  "description": "命令行支持参数",
+  "description": "webpack-module",
   "browserslist": [
     "> 1%"
   ],
   "scripts": {
-    "new-page": "node ./webpack/utils/page.js",
-    "new-comp": "node ./webpack/utils/component.js"
+    "page": "node ./webpack/scripts/page.js",
+    "comp": "node ./webpack/scripts/component.js --need-style"
   },
   "keywords": [],
   "author": "anofury",
@@ -20,7 +20,8 @@
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "vconsole": "^3.9.5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -44,6 +45,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.25.1",
     "html-webpack-plugin": "^5.3.2",
+    "jsonminify": "^0.4.1",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "mini-css-extract-plugin": "^2.2.2",
@@ -56,6 +58,7 @@
     "prettier": "^2.3.2",
     "sass": "^1.39.0",
     "sass-loader": "^12.1.0",
+    "strip-json-comments": "^4.0.0",
     "style-loader": "^3.2.1",
     "terser-webpack-plugin": "^5.2.1",
     "url-loader": "^4.1.1",

@@ -1,0 +1,8 @@
+{
+	"entry": [
+		"page1.js","page1-attach.js", "../test-1-common.js"
+	],
+	"title": "page-1",
+	"htmlname": "page_1.html",
+	"template": "default.html"
+}
