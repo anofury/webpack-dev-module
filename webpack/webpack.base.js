@@ -89,7 +89,7 @@ module.exports = {
                     meta: {
                         // for mobile
                         viewport:
-                            'width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale1.0,user-scalable=no,viewport-fit=cover,shrink-to-fit=no',
+                            'width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,viewport-fit=cover,shrink-to-fit=no',
                         'theme-color': APP_CONFIG.window.mainColor,
                     },
                     minify: {
