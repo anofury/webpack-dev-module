@@ -3,21 +3,23 @@ module.exports = {
         dir: './src/pages',
         items: [
             // 业务模块
-            './test-1/test-sub-1/page1',
-            './test-1/test-sub-2/page2',
+            './test-1/page1',
+            './test-1/page2',
             // 业务模块
             './test-2/page3',
         ],
     },
     window: {
-        mainColor: '#F0392F',
-        mainTapColor: '#F0392F',
+        mainColor: '#FDCF4A',
+        mainTapColor: '#F6B816',
     },
-    component: './src/components',
     template: './src/templates',
+    component: './src/components',
+    util: './src/utils',
     static: './static',
+    mock: './_mocks_',
     dist: './dist',
     styleExt: '.less',
     entryExt: '.js',
-    entryCache: '.entry', // entry解析结果缓存文件
+    entryCache: '.entry',
 };

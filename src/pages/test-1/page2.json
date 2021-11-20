@@ -1,6 +1,6 @@
 {
-	"entry": [
-		"page2.js", "../test-1-common.js"
+	"chunks": [
+		"page2.js", "test-1-common.js"
 	],
 	"title": "page-2",
 	"htmlname": "page_2.html",

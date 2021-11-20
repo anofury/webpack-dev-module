@@ -1,26 +1,25 @@
 [
 	{
-		"entry": {
-			"page_1": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-sub-1\\page1.js",
-			"page1_attach": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-sub-1\\page1-attach.js",
-			"test_1_common": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-1-common.js"
+		"chunks": {
+			"page1": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\page1.js",
+			"test1Common": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-1-common.js"
 		},
 		"title": "page-1",
 		"htmlname": "page_1.html",
 		"template": "default.html"
 	},
 	{
-		"entry": {
-			"page_2": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-sub-2\\page2.js",
-			"test_1_common": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-1-common.js"
+		"chunks": {
+			"page2": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\page2.js",
+			"test1Common": "D:\\Program Space\\webpack-module\\src\\pages\\test-1\\test-1-common.js"
 		},
 		"title": "page-2",
 		"htmlname": "page_2.html",
 		"template": "default.html"
 	},
 	{
-		"entry": {
-			"page_3": "D:\\Program Space\\webpack-module\\src\\pages\\test-2\\page3.js"
+		"chunks": {
+			"page3": "D:\\Program Space\\webpack-module\\src\\pages\\test-2\\page3.js"
 		},
 		"title": "page-3",
 		"htmlname": "page_3.html",

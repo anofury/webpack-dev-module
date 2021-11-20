@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "sourceMap": false,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "@comp/*": ["./src/components/*"],
+            "@util/*": ["./src/utils/*"],
+            "@mocks/*": ["./_mocks_/*"]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

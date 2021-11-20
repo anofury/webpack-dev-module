@@ -3,6 +3,7 @@
  * @Options comp-dir:[comp-name] [--need-style]
  */
 const fs = require('fs');
+const { exit } = require('process');
 const minimist = require('minimist');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
@@ -23,7 +24,7 @@ try {
     }
 } catch (error) {
     console.log(colors.red(error));
-    return;
+    exit();
 }
 
 const dirName = nameStyleFormat.pascal(compDirName[0]);
@@ -41,23 +42,23 @@ const needStyle = process.env.npm_config_need_style || args['need-style'];
 try {
     fs.statSync(compFilePathName);
     console.log(colors.red(`[comp-name] is exist: ${compFilePathName}\n`));
-    return;
+    exit();
 } catch (error) {}
 
 if (needStyle) {
     try {
         fs.statSync(compStylePathName);
         console.log(colors.red(`[comp-style] is exist: ${compStylePathName}\n`));
-        return;
+        exit();
     } catch (error) {}
 }
 
 fs.mkdir(dirPathName, { recursive: true }, (err) => {
     if (err) {
         console.log(colors.red('error mkdir: [comp-dir]\n'));
-        return;
+        exit();
     }
-    fs.writeFile(compFilePathName, `/*\n * \n * ${getDataTime()}\n */\n\n\n`, {}, (err) => {
+    fs.writeFile(compFilePathName, `/*\n * \n * ${getDataTime()}\n */\n`, {}, (err) => {
         if (err) {
             console.log(colors.red(`error writeFile: ${compFilePathName}\n`));
         } else {

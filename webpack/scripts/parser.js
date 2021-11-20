@@ -2,6 +2,7 @@
  * entry-config parser
  */
 const fs = require('fs');
+const { exit } = require('process');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
 const { getAppConfig, getAbsolutePath, generatorEntryCache } = require('./tool');
@@ -24,14 +25,14 @@ for (let index = 0; index < pageList.length; index++) {
         entryConfig = require(entryConfigPath);
     } catch (error) {
         console.log(colors.red(`error entryConfig: ${entryConfigPath}\n`));
-        return;
+        exit();
     }
 
-    const entryConfigItemList = entryConfig['entry'];
+    const entryConfigItemList = entryConfig['chunks'];
     for (let entryIdx = 0; entryIdx < entryConfigItemList.length; entryIdx++) {
         const entryConfigItem = entryConfigItemList[entryIdx];
         const entryConfigItemSplitIndex = entryConfigItem.lastIndexOf('.');
-        const entryItemName = nameStyleFormat.snake(entryConfigItem.slice(0, entryConfigItemSplitIndex));
+        const entryItemName = nameStyleFormat.camel(entryConfigItem.slice(0, entryConfigItemSplitIndex));
         const entryItemPath = getAbsolutePath(pageDir, entryDir, entryConfigItem);
 
         try {
@@ -39,11 +40,11 @@ for (let index = 0; index < pageList.length; index++) {
             entryConfigParseItem[entryItemName] = entryItemPath;
         } catch (error) {
             console.log(colors.red(`error entryConfigItem: ${entryItemPath}\n`));
-            return;
+            exit();
         }
     }
 
-    entryConfig['entry'] = entryConfigParseItem;
+    entryConfig['chunks'] = entryConfigParseItem;
 
     entryConfigParseRet.push(entryConfig);
 }
@@ -53,10 +54,10 @@ generatorEntryCache(JSON.stringify(entryConfigParseRet, null, '\t'));
 
 const entryConfigParseCopy = JSON.parse(JSON.stringify(entryConfigParseRet));
 const entry = entryConfigParseCopy.reduce((totalEntry, currentEntry) => {
-    return { ...totalEntry, ...currentEntry.entry };
+    return { ...totalEntry, ...currentEntry['chunks'] };
 }, {});
 const html = entryConfigParseCopy.reduce((totalEntry, currentEntry) => {
-    currentEntry['entry'] = Object.keys(currentEntry['entry']);
+    currentEntry['chunks'] = Object.keys(currentEntry['chunks']);
     return totalEntry.concat([currentEntry]);
 }, []);
 

@@ -3,6 +3,7 @@
  * @Options page-dir:[page-name] [--need-style]
  */
 const fs = require('fs');
+const { exit } = require('process');
 const minimist = require('minimist');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
@@ -11,7 +12,7 @@ const { getAbsolutePath, getAppConfig, getDataTime } = require('./tool');
 const APP_CONFIG = getAppConfig();
 const ENTRY_PACK_TEMP = (entry, title, htmlname, template) => {
     return {
-        entry: [entry],
+        chunks: [entry],
         title,
         htmlname,
         template,
@@ -31,7 +32,7 @@ try {
     }
 } catch (error) {
     console.log(colors.red(error));
-    return;
+    exit();
 }
 
 let dirName;
@@ -63,29 +64,29 @@ const needStyle = process.env.npm_config_need_style || args['need-style'];
 try {
     fs.statSync(entryPathName);
     console.log(colors.red(`[page-name] is exist: ${entryPathName}\n`));
-    return;
+    exit();
 } catch (error) {}
 
 try {
     fs.statSync(entryPackPathName);
     console.log(colors.red(`[page-pack] is exist: ${entryPackPathName}\n`));
-    return;
+    exit();
 } catch (error) {}
 
 if (needStyle) {
     try {
         fs.statSync(entryStylePathName);
         console.log(colors.red(`[page-style] is exist: ${entryStylePathName}\n`));
-        return;
+        exit();
     } catch (error) {}
 }
 
 fs.mkdir(dirPathName, { recursive: true }, (err) => {
     if (err) {
         console.log(colors.red('error mkdir: [page-dir]\n'));
-        return;
+        exit();
     }
-    fs.writeFile(entryPathName, `/*\n * \n * ${getDataTime()}\n */\n\n\n`, {}, (err) => {
+    fs.writeFile(entryPathName, `/*\n * \n * ${getDataTime()}\n */\n`, {}, (err) => {
         if (err) {
             console.log(colors.red(`error writeFile: ${entryPathName}\n`));
         }
@@ -98,7 +99,7 @@ fs.mkdir(dirPathName, { recursive: true }, (err) => {
             if (err) {
                 console.log(colors.red(`error writeFile: ${entryPackPathName}\n`));
             } else {
-                console.log(colors.green(`new Page: ./${dirName}/${pageName}\n`));
+                console.log(colors.green(`new Page: './${dirName}/${pageName}',\n`));
             }
         }
     );
