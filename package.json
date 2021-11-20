@@ -1,7 +1,7 @@
 {
-  "name": "webpack-module",
+  "name": "webpack-dev-module",
   "version": "0.0.1",
-  "description": "webpack-module",
+  "description": "webpack-dev-module",
   "browserslist": [
     "> 1%",
     "last 2 versions",
