@@ -9,8 +9,8 @@ module.exports = {
     entry,
     output: {
         path: getAbsolutePath(APP_CONFIG.dist),
-        filename: '[name].js',
-        assetModuleFilename: 'assets/[name][ext]',
+        filename: '[name]_[contenthash:8].js',
+        assetModuleFilename: 'assets/[name]_[contenthash:8][ext]',
     },
     externals: {
         react: 'React',
@@ -46,7 +46,7 @@ module.exports = {
                 test: /\.(ttf|eot|woff|woff2)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[name][ext]',
+                    filename: 'fonts/[name]_[contenthash:8][ext]',
                 },
             },
             {

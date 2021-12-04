@@ -1,6 +1,6 @@
 {
 	"chunks": [
-		"page3.js"
+		"page3.js", "../app-common.js"
 	],
 	"title": "page-3",
 	"htmlname": "page_3.html",

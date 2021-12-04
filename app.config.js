@@ -2,9 +2,8 @@ module.exports = {
     page: {
         dir: './src/pages',
         items: [
-            // 业务模块
-            './test-1/page1',
-            './test-1/page2',
+            // 业务模块列表
+            './test-1/entry',
             // 业务模块
             './test-2/page3',
         ],
@@ -21,5 +20,5 @@ module.exports = {
     dist: './dist',
     styleExt: '.less',
     entryExt: '.js',
-    entryCache: '.entry',
+    entryCache: '.entrycache',
 };

@@ -1,8 +1,0 @@
-{
-	"chunks": [
-		"page1.js", "test-1-common.js"
-	],
-	"title": "page-1",
-	"htmlname": "page_1.html",
-	"template": "default.html"
-}
