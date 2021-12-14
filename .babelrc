@@ -14,13 +14,13 @@
         "@babel/preset-react"
     ],
     "plugins": [
-        [
-            "import",
-            {
-                "libraryName": "antd-mobile",
-                "style": "css"
-            }
-        ],
+        // [
+        //     "import",
+        //     {
+        //         "libraryName": "antd-mobile",
+        //         "style": "css"
+        //     }
+        // ],
         "@babel/plugin-transform-runtime",
         [
             "@babel/plugin-proposal-decorators",

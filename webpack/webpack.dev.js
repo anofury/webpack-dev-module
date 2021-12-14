@@ -4,9 +4,7 @@ const baseConfig = require('./webpack.base');
 
 const devConfig = {
     mode: 'development',
-    output: {
-        clean: true,
-    },
+    devtool: 'eval-cheap-module-source-map',
     plugins: [
         new VConsolePlugin({
             enable: true,

@@ -6,6 +6,9 @@ const APP_CONFIG = getAppConfig();
 
 const serverConfig = {
     mode: 'development',
+    output: {
+        clean: false,
+    },
     devServer: {
         static: {
             directory: getAbsolutePath(APP_CONFIG.dist),

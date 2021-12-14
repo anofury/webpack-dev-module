@@ -8,13 +8,18 @@ const APP_CONFIG = getAppConfig();
 module.exports = {
     entry,
     output: {
+        clean: true,
         path: getAbsolutePath(APP_CONFIG.dist),
-        filename: '[name]_[contenthash:8].js',
-        assetModuleFilename: 'assets/[name]_[contenthash:8][ext]',
+        filename: '[name].js',
+        assetModuleFilename: 'assets/[name][ext]',
+        pathinfo: false,
     },
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
+    },
+    cache: {
+        type: 'filesystem',
     },
     module: {
         rules: [
@@ -45,9 +50,6 @@ module.exports = {
             {
                 test: /\.(ttf|eot|woff|woff2)$/i,
                 type: 'asset/resource',
-                generator: {
-                    filename: 'fonts/[name]_[contenthash:8][ext]',
-                },
             },
             {
                 test: /\.less$/i,
@@ -60,6 +62,12 @@ module.exports = {
                     'style-loader',
                     'css-loader',
                     'postcss-loader',
+                    // {
+                    //     loader: 'thread-loader',
+                    //     options: {
+                    //         workerParallelJobs: 2,
+                    //     },
+                    // },
                     {
                         loader: 'sass-loader',
                         options: {

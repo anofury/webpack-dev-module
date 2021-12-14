@@ -8,7 +8,8 @@ const IS_PROD_DEBUG = process.env.npm_lifecycle_event === 'build-app-debug';
 const prodConfig = {
     mode: 'production',
     output: {
-        clean: true,
+        filename: '[name]_[contenthash:8].js',
+        assetModuleFilename: 'assets/[name]_[contenthash:8][ext]',
     },
     optimization: {
         minimize: true,
@@ -22,28 +23,33 @@ const prodConfig = {
                     },
                 },
             }),
-            new CssMinimizerPlugin(),
+            new CssMinimizerPlugin({
+                parallel: true,
+            }),
         ],
+        moduleIds: 'deterministic',
         splitChunks: {
+            chunks: 'all',
             cacheGroups: {
                 vendors: {
                     chunks: 'all',
+                    // name: 'vendors',
                     test: /[\\/]node_modules[\\/]/,
                     priority: 10,
                     minChunks: 2,
                     minSize: 0,
-                    name: 'vendors',
                 },
                 commons: {
                     chunks: 'all',
+                    // name: 'commons',
                     test: /\.(ts|tsx|js|jsx)/,
                     priority: -10,
                     minChunks: 2,
                     minSize: 0,
-                    name: 'commons',
                 },
             },
         },
+        // runtimeChunk: true,
     },
     plugins: [
         new VConsolePlugin({
