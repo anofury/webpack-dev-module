@@ -1,0 +1,27 @@
+[
+	{
+		"chunks": {
+			"srcModulesTest1Test1": "D:\\Program Space\\webpack-dev-module\\src\\modules\\test-1\\test1.js",
+			"srcModulesModuleCommon": "D:\\Program Space\\webpack-dev-module\\src\\modules\\module-common.js"
+		},
+		"title": "test-1",
+		"htmlname": "test_1.html",
+		"template": "default.html"
+	},
+	{
+		"chunks": {
+			"srcModulesTest2Test2QUery": "D:\\Program Space\\webpack-dev-module\\src\\modules\\test-2\\test2Query.js"
+		},
+		"title": "test-2-query",
+		"htmlname": "test_2_query.html",
+		"template": "default.html"
+	},
+	{
+		"chunks": {
+			"srcModulesTest2Test2REsult": "D:\\Program Space\\webpack-dev-module\\src\\modules\\test-2\\test2Result.js"
+		},
+		"title": "test-2-result",
+		"htmlname": "test_2_result.html",
+		"template": "default.html"
+	}
+]

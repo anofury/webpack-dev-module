@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
@@ -7,9 +8,10 @@ const APP_CONFIG = getAppConfig();
 
 module.exports = {
     entry,
+    context: path.resolve(__dirname, '../'),
     output: {
         clean: true,
-        path: getAbsolutePath(APP_CONFIG.dist),
+        path: getAbsolutePath(APP_CONFIG['dist']),
         filename: '[name].js',
         assetModuleFilename: 'assets/[name][ext]',
         pathinfo: false,
@@ -17,9 +19,6 @@ module.exports = {
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-    },
-    cache: {
-        type: 'filesystem',
     },
     module: {
         rules: [
@@ -91,14 +90,14 @@ module.exports = {
                     chunksSortMode: 'manual',
                     title: item['title'],
                     filename: item['htmlname'],
-                    template: getAbsolutePath(APP_CONFIG.template, item['template']),
+                    template: getAbsolutePath(APP_CONFIG['template'], item['template']),
                     timestamp: new Date().getTime(),
                     scriptLoading: 'blocking',
                     meta: {
                         // for mobile
                         viewport:
                             'width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,viewport-fit=cover,shrink-to-fit=no',
-                        'theme-color': APP_CONFIG.window.mainColor,
+                        'theme-color': APP_CONFIG['window']['mainColor'],
                     },
                     minify: {
                         collapseWhitespace: true,
@@ -116,8 +115,8 @@ module.exports = {
                         gitignore: true,
                         ignore: ['**/*.html'],
                     },
-                    from: getAbsolutePath(APP_CONFIG.static),
-                    to: getAbsolutePath(APP_CONFIG.dist),
+                    from: getAbsolutePath(APP_CONFIG['static']),
+                    to: getAbsolutePath(APP_CONFIG['dist']),
                 },
             ],
         }),
@@ -125,9 +124,9 @@ module.exports = {
     resolve: {
         extensions: ['jsx', '.js'],
         alias: {
-            '@comp': getAbsolutePath(APP_CONFIG.component),
-            '@util': getAbsolutePath(APP_CONFIG.util),
-            '@mocks': getAbsolutePath(APP_CONFIG.mock),
+            '@comp': getAbsolutePath(APP_CONFIG['component']),
+            '@util': getAbsolutePath(APP_CONFIG['util']),
+            '@mocks': getAbsolutePath(APP_CONFIG['mock']),
         },
     },
 };

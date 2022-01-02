@@ -3,7 +3,7 @@ const VConsolePlugin = require('vconsole-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base');
-const IS_PROD_DEBUG = process.env.npm_lifecycle_event === 'build-app-debug';
+const { IS_PROD_DEBUG } = require('./scripts/tool');
 
 const prodConfig = {
     mode: 'production',

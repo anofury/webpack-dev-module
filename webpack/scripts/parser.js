@@ -6,11 +6,13 @@ const path = require('path');
 const { exit } = require('process');
 const colors = require('colors');
 const nameStyleFormat = require('naming-style');
-const { getAppConfig, getAbsolutePath, generatorEntryCache } = require('./tool');
+const { IS_PROD, IS_PROD_DEBUG, getAbsolutePath, getAppConfig, generatorEntryCache } = require('./tool');
 
 const APP_CONFIG = getAppConfig();
-const pageDir = APP_CONFIG.page.dir;
-const pageList = APP_CONFIG.page.items;
+const pageList =
+    !IS_PROD && !IS_PROD_DEBUG && APP_CONFIG['pages']['include'] && APP_CONFIG['pages']['include'].length
+        ? APP_CONFIG['pages']['include']
+        : APP_CONFIG['pages']['default'];
 const entryConfigParseRet = [];
 
 pageList.forEach((pagePathItem) => {
@@ -18,7 +20,7 @@ pageList.forEach((pagePathItem) => {
     const entryNameSplitIndex = pagePathItem.lastIndexOf('/');
     const entryConfigDir = pagePathItem.slice(0, entryNameSplitIndex + 1);
     const entryConfigName = pagePathItem.slice(entryNameSplitIndex + 1);
-    const entryConfigPath = getAbsolutePath(pageDir, entryConfigDir, entryConfigName + '.json');
+    const entryConfigPath = getAbsolutePath(entryConfigDir, entryConfigName + '.json');
 
     try {
         entryConfigList = require(entryConfigPath);
@@ -37,7 +39,7 @@ pageList.forEach((pagePathItem) => {
 
         entryConfigItemList.forEach((entryConfigItemListItem) => {
             const entryConfigItemSplitIndex = entryConfigItemListItem.lastIndexOf('.');
-            const entryItemPath = getAbsolutePath(pageDir, entryConfigDir, entryConfigItemListItem);
+            const entryItemPath = getAbsolutePath(entryConfigDir, entryConfigItemListItem);
             const entryItemName = nameStyleFormat.camel(
                 path.join(entryConfigDir, entryConfigItemListItem.slice(0, entryConfigItemSplitIndex))
             );

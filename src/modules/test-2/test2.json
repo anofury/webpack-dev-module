@@ -1,0 +1,18 @@
+[
+	{
+		"chunks": [
+			"test2Query.js"
+		],
+		"title": "test-2-query",
+		"htmlname": "test_2_query.html",
+		"template": "default.html"
+	},
+	{
+		"chunks": [
+			"test2Result.js"
+		],
+		"title": "test-2-result",
+		"htmlname": "test_2_result.html",
+		"template": "default.html"
+	}
+]

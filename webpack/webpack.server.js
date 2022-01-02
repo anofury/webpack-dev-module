@@ -11,7 +11,7 @@ const serverConfig = {
     },
     devServer: {
         static: {
-            directory: getAbsolutePath(APP_CONFIG.dist),
+            directory: getAbsolutePath(APP_CONFIG['dist']),
         },
         allowedHosts: 'all',
         compress: true,

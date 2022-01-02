@@ -1,24 +1,30 @@
 module.exports = {
-    page: {
-        dir: './src/pages',
-        items: [
-            // 业务模块列表
-            './test-1/entry',
-            // 业务模块
-            './test-2/page3',
-        ],
-    },
+    dist: './build',
+    mock: './_mocks_',
+    static: './static',
+    util: './src/utils',
+    entry: './src/modules',
+    component: './src/components',
+    template: './src/templates',
     window: {
         mainColor: '#FDCF4A',
         mainTapColor: '#F6B816',
     },
-    template: './src/templates',
-    component: './src/components',
-    util: './src/utils',
-    static: './static',
-    mock: './_mocks_',
-    dist: './dist',
-    styleExt: '.less',
-    entryExt: '.js',
-    entryCache: '.entrycache',
+    extension: {
+        stylesheet: '.less',
+        javascript: '.js',
+        entryoutput: '.entries',
+    },
+    pages: {
+        include: [
+            // will ignore default, only works in development mode
+            './src/modules/test-1/test1',
+        ],
+        default: [
+            // module one
+            './src/modules/test-1/test1',
+            // module two
+            './src/modules/test-2/test2',
+        ],
+    },
 };

@@ -1,0 +1,8 @@
+{
+	"chunks": [
+		"test1.js", "../module-common.js"
+	],
+	"title": "test-1",
+	"htmlname": "test_1.html",
+	"template": "default.html"
+}

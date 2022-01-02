@@ -30,12 +30,12 @@ try {
 const dirName = nameStyleFormat.pascal(compDirName[0]);
 const compName = nameStyleFormat.pascal(compDirName[1] || dirName);
 
-const compFileName = compName + APP_CONFIG.entryExt;
-const compStyleName = compName + APP_CONFIG.styleExt;
+const compFileName = compName + APP_CONFIG['extension']['javascript'];
+const compStyleName = compName + APP_CONFIG['extension']['stylesheet'];
 
-const dirPathName = getAbsolutePath(APP_CONFIG.component, dirName);
-const compFilePathName = getAbsolutePath(APP_CONFIG.component, dirName, compFileName);
-const compStylePathName = getAbsolutePath(APP_CONFIG.component, dirName, compStyleName);
+const dirPathName = getAbsolutePath(APP_CONFIG['component'], dirName);
+const compFilePathName = getAbsolutePath(APP_CONFIG['component'], dirName, compFileName);
+const compStylePathName = getAbsolutePath(APP_CONFIG['component'], dirName, compStyleName);
 
 const needStyle = process.env.npm_config_need_style || args['need-style'];
 

@@ -8,7 +8,7 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "page": "node ./webpack/scripts/page.js",
+    "module": "node ./webpack/scripts/entry.js",
     "comp": "node ./webpack/scripts/component.js --need-style",
     "server": "webpack-dev-server --config ./webpack/webpack.server.js --progress ",
     "watch-dev": "webpack --config ./webpack/webpack.dev.js --watch --progress",
@@ -67,8 +67,8 @@
     "style-loader": "^3.2.1",
     "thread-loader": "^3.0.4",
     "vconsole-webpack-plugin": "^1.7.3",
-    "webpack": "^5.51.1",
-    "webpack-cli": "^4.8.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0",
     "webpack-merge": "^5.8.0"
   }
