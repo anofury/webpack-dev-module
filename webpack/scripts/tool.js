@@ -54,21 +54,20 @@ const generatorEntryCache = (content) => {
  */
 const addEntryConfig2AppConfig = (entryDir) => {
     // TODO
-    entryDir = ('' + entryDir || '').trim();
+    // entryDir = ('' + entryDir || '').trim();
 
-    if (!entryDir) return;
+    // if (!entryDir) return;
 
-    const appConfigString = fs.readFileSync(getAbsolutePath(APP_CONFIG_NAME), { encoding: 'utf8' });
-    const appConfigArr = appConfigString.split(os.EOL);
-    // console.log(appConfigString);
-    // console.log(
-    //     appConfigString.match(
-    //         new RegExp(`module:\\s+\\{(${os.EOL}|.)*\\}`)
-    //     )
-    // );
+    // const appConfigString = fs.readFileSync(getAbsolutePath(APP_CONFIG_NAME), { encoding: 'utf8' });
+    // const appConfigArr = appConfigString.split(os.EOL);
+
+    // pushString2AppConfig(['modules:include', 'modules:default']);
+
+    // function pushString2AppConfig(keyArr) {
+        
+    // }
+    // console.log(appConfigArr);
 };
-
-addEntryConfig2AppConfig('./sds/sdsds/dsd');
 
 module.exports = {
     IS_PROD: process.env.npm_lifecycle_event === 'build-app',

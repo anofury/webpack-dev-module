@@ -1,5 +1,4 @@
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const VConsolePlugin = require('vconsole-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base');
@@ -51,11 +50,8 @@ const prodConfig = {
         },
         // runtimeChunk: true,
     },
-    plugins: [
-        new VConsolePlugin({
-            enable: IS_PROD_DEBUG,
-        }),
-    ],
 };
+
+process.env.NODE_ENV = 'production';
 
 module.exports = merge(baseConfig, prodConfig);

@@ -3,7 +3,6 @@ module.exports = {
     mock: './_mocks_',
     static: './static',
     util: './src/utils',
-    entry: './src/modules',
     component: './src/components',
     template: './src/templates',
     window: {
@@ -15,7 +14,8 @@ module.exports = {
         javascript: '.js',
         entryoutput: '.entries',
     },
-    pages: {
+    entry: './src/modules',
+    modules: {
         include: [
             // will ignore default, only works in development mode
             './src/modules/test-1/test1',
