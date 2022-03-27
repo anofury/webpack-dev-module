@@ -10,9 +10,9 @@ const { IS_PROD, IS_PROD_DEBUG, getAbsolutePath, getAppConfig, generatorEntryCac
 
 const APP_CONFIG = getAppConfig();
 const pageList =
-    !IS_PROD && !IS_PROD_DEBUG && APP_CONFIG['modules']['include'] && APP_CONFIG['modules']['include'].length
-        ? APP_CONFIG['modules']['include']
-        : APP_CONFIG['modules']['default'];
+    !IS_PROD && !IS_PROD_DEBUG && APP_CONFIG['pages']['include'] && APP_CONFIG['pages']['include'].length
+        ? APP_CONFIG['pages']['include']
+        : APP_CONFIG['pages']['default'];
 const entryConfigParseRet = [];
 
 pageList.forEach((pagePathItem) => {

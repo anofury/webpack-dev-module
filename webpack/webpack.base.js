@@ -52,14 +52,33 @@ module.exports = {
             },
             {
                 test: /\.less$/i,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:5]',
+                            },
+                        },
+                    },
+                    'postcss-loader',
+                    'less-loader',
+                ],
                 exclude: /node_modules/,
             },
             {
                 test: /\.(sass|scss)$/i,
                 use: [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:5]',
+                            },
+                        },
+                    },
                     'postcss-loader',
                     // {
                     //     loader: 'thread-loader',
@@ -77,7 +96,18 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:5]',
+                            },
+                        },
+                    },
+                    'postcss-loader',
+                ],
                 exclude: /node_modules/,
             },
         ],

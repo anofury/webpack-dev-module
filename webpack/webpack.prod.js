@@ -24,6 +24,14 @@ const prodConfig = {
             }),
             new CssMinimizerPlugin({
                 parallel: true,
+                minimizerOptions: {
+                    preset: [
+                        'default',
+                        {
+                            discardComments: { removeAll: true },
+                        },
+                    ],
+                },
             }),
         ],
         moduleIds: 'deterministic',

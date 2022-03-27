@@ -14,17 +14,17 @@ module.exports = {
         javascript: '.js',
         entryoutput: '.entries',
     },
-    entry: './src/modules',
-    modules: {
+    entry: './src/pages',
+    pages: {
         include: [
             // will ignore default, only works in development mode
-            './src/modules/test-1/test1',
+            './src/pages/test-1/test1',
         ],
         default: [
             // module one
-            './src/modules/test-1/test1',
+            './src/pages/test-1/test1',
             // module two
-            './src/modules/test-2/test2',
+            './src/pages/test-2/test2',
         ],
     },
 };
